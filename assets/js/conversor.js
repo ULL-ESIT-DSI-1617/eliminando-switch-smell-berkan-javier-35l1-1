@@ -68,8 +68,8 @@ class Kelvin extends Temperature {
     }
 }
 
-function converter() {
-    var temp = original.value;
+function converter(original_measure) {
+    var temp = original_measure;
     var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcCkK])\s*(to)?\s*([fFcCkK])\s*$/;
 
     var m = temp.match(regexp);
@@ -84,11 +84,11 @@ function converter() {
             switch (toType) {
                 case "k":
                 case "K":
-                    converted.innerHTML = temp.toKelvin();
+                     return temp.toKelvin();
                     break;
                 case "f":
                 case "F":
-                    converted.innerHTML = temp.toFarenheit();
+                    return temp.toFarenheit();
                     break;
                 default:
                     break;
@@ -98,11 +98,11 @@ function converter() {
             switch (toType) {
                 case "k":
                 case "K":
-                    converted.innerHTML = temp.toKelvin();
+                    return temp.toKelvin();
                     break;
                 case "c":
                 case "C":
-                    converted.innerHTML = temp.toCelsius();
+                    return temp.toCelsius();
                     break;
                 default:
                     break;
@@ -112,17 +112,17 @@ function converter() {
             switch (toType) {
                 case "f":
                 case "F":
-                    converted.innerHTML = temp.toFarenheit();
+                    return temp.toFarenheit();
                     break;
                 case "c":
                 case "C":
-                    converted.innerHTML = temp.toCelsius();
+                    return temp.toCelsius();
                     break;
                 default:
                     break;
             }
         }
     } else {
-        converted.innerHTML = "ERROR! Try something like '-4.2C to f' or '-4.2C f' instead";
+        return "ERROR! Try something like '-4.2C to f' or '-4.2C f' instead";
     }
 }
