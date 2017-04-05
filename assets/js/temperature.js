@@ -4,7 +4,7 @@ class Temperature extends Measurement {
     }
 }
 
-class Celcius extends Temperature {
+class Celsius extends Temperature {
     constructor(value, magnitude) {
         super(value, magnitude);
     }
@@ -28,7 +28,7 @@ class Farenheit extends Temperature {
     }
 
     toCelsius() {
-        return ((this.value - 32) / (9 / 5)).toFixed(2) + " Celcius";
+        return ((this.value - 32) / (9 / 5)).toFixed(2) + " Celsius";
     }
 }
 
@@ -38,7 +38,7 @@ class Kelvin extends Temperature {
     }
 
     toCelsius() {
-        return (this.value - 273.15).toFixed(2) + " Celcius";
+        return (this.value - 273.15).toFixed(2) + " Celsius";
     }
 
     toFarenheit() {

@@ -30,7 +30,7 @@ function converter(original_measure) {
         var toType = m[4];
         num = parseFloat(num);
         if (fromType == 'c' || fromType == 'C') {
-            var temp = new Celcius(num, fromType);
+            var temp = new Celsius(num, fromType);
             switch (toType) {
                 case "k":
                 case "K":

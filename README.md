@@ -1,3 +1,5 @@
+# PRÁCTICA 7: Eliminando Switch Smell
+
 ## Instrucciones
 
 Para comprobar el funcionamiento del conversor de temperaturas:
