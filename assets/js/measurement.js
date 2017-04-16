@@ -45,8 +45,8 @@
 
         if(match) {
             var numero = match.value;
-            var tipo = match.tipo;
-            var destino = match.destino;
+            var tipo = match.tipo.toLowerCase();
+            var destino = match.destino.toLowerCase();
         
             var source = new measures[tipo[0]](numero);
             var target = "to" + measures[destino[0]].name;
