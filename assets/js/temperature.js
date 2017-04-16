@@ -12,16 +12,12 @@
     Celsius.prototype = {
         name: "Celsius",
 
-        check: function(tipo) {
-            return tipo.match(/(c(?:e(?:l(?:s(?:i(?:u(?:s)))))))/g);
-        },
-
         toFahrenheit: function(value) {
             return ((value * 9/5) + 32);
         },
 
         toCelsius: function(value) {
-            return this.valor;
+            return value;
         }
     
     };
@@ -34,16 +30,12 @@
     Fahrenheit.prototype = {
         name: "Fahrenheit",
 
-        check: function(tipo){
-            return tipo.match(/(f(?:a(?:h(?:r(?:e(?:n(?:h(?:e(?:i(?:t))))))))))/g);
-        },
-
         toCelsius: function(value) {
-            return ((this.valor - 32)*5/9);
+            return ((value - 32)*5/9);
         },
 
         toFahrenheit: function(value) {
-            return this.valor;
+            return value;
         }
     };
 
