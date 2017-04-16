@@ -1,47 +1,31 @@
-class Temperature extends Measurement {
-    constructor(value, magnitude) {
-        super(value, magnitude);
-    }
-}
+(function(exports) {
+    "use strict";
 
-class Celsius extends Temperature {
-    constructor(value, magnitude) {
-        super(value, magnitude);
+    function Temperature(valor, tipo) {
+        Medida.call(this, valor, tipo);
     }
 
-    toKelvin() {
-        return (this.value + 273.15).toFixed(2) + " Kelvin";
+    function Celsius(valor) {
+        Temperatura.call(this, valor, "c");
     }
 
-    toFarenheit() {
-        return ((this.value * 9 / 5) + 32).toFixed(2) + " Farenheit";
-    }
-}
+    Celsius.prototype = {
+        name: "Celsius",
 
-class Farenheit extends Temperature {
-    constructor(value, magnitude) {
-        super(value, magnitude);
-    }
+        check: function(tipo) {
+            return tipo.match(/(c(?:e(?:l(?:s(?:i(?:u(?:s)))))))/g);
+        },
 
-    toKelvin() {
-        return ((this.value + 459.67) * 5 / 9).toFixed(2) + " Kelvin";
-    }
+        toFarhenheit: function(value) {
+            return ((this.valor * 9/5) + 32);
+        },
 
-    toCelsius() {
-        return ((this.value - 32) / (9 / 5)).toFixed(2) + " Celsius";
-    }
-}
+        toCelsius: function(value) {
+            return this.valor;
+        }
+    };
 
-class Kelvin extends Temperature {
-    constructor(value, magnitude) {
-        super(value, magnitude);
-    }
+    exports.Temperatura = Temperature;
+    exports.Celsius = Celsius;
 
-    toCelsius() {
-        return (this.value - 273.15).toFixed(2) + " Celsius";
-    }
-
-    toFarenheit() {
-        return ((this.value * 9 / 5) - 459.67).toFixed(2) + " Farenheit";
-    }
-}
+})(this)
