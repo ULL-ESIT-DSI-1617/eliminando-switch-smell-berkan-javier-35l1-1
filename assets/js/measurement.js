@@ -16,6 +16,7 @@
             this.value = value;
             this.type = type;
         }
+
     }
     
     Medida.match = function (input) {
@@ -38,7 +39,7 @@
         var measures = Medida.medidas;
 
         measures.c = Celsius;
-        measures.f = Farenheit;
+        measures.f = Fahrenheit;
 
         var match = Medida.match(valor);
 
@@ -47,21 +48,14 @@
             var tipo = match.tipo;
             var destino = match.destino;
         
-            try {
-                var source = new measures[tipo[0]](numero);
-                var target = "to" + measures[destino[0]].name;
-                if(!source.check(tipo) || !target.check(destino)) {
-                    throw "error";
-                }
-                return source[target]().toFixed(2) + " " + target;
-            }
-            catch(err){
-                return "No hay forma de convertir desde " + tipo + " hasta " + destino;
-            }
+            var source = new measures[tipo[0]](numero);
+            var target = "to" + measures[destino[0]].name;
+            return source[target](numero).toFixed(2) + " " + measures[destino[0]].name;
+            
         }
-
-        else
-            return "Introduzca la temperatura de la siguiente forma: 330e-1 F to C";
+        else {
+            return "Introduzca la temperatura de la siguiente forma: 3.14F to C";
+        }
     };
 
     exports.Medida = Medida;

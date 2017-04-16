@@ -16,8 +16,8 @@
             return tipo.match(/(c(?:e(?:l(?:s(?:i(?:u(?:s)))))))/g);
         },
 
-        toFarhenheit: function(value) {
-            return ((this.valor * 9/5) + 32);
+        toFahrenheit: function(value) {
+            return ((value * 9/5) + 32);
         },
 
         toCelsius: function(value) {
@@ -26,13 +26,13 @@
     
     };
 
-    // Clase Farenheit
-    function Farenheit(valor){
+    // Clase Fahrenheit
+    function Fahrenheit(valor){
         Temperature.call(this, valor, "f");
     }
 
-    Farenheit.prototype = {
-        name: "Farenheit",
+    Fahrenheit.prototype = {
+        name: "Fahrenheit",
 
         check: function(tipo){
             return tipo.match(/(f(?:a(?:h(?:r(?:e(?:n(?:h(?:e(?:i(?:t))))))))))/g);
@@ -49,6 +49,6 @@
 
     exports.Temperatura = Temperature;
     exports.Celsius = Celsius;
-    exports.Farenheit = Farenheit;
+    exports.Fahrenheit = Fahrenheit;
 
 })(this);
