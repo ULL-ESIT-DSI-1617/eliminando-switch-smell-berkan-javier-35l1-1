@@ -40,6 +40,7 @@
 
         measures.c = Celsius;
         measures.f = Fahrenheit;
+        measures.k = Kelvin;
 
         var match = Medida.match(valor);
 

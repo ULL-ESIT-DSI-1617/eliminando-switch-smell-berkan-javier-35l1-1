@@ -39,8 +39,30 @@
         }
     };
 
+    // Clase Kelvin 
+    function Kelvin(valor){
+        Temperature.call(this, valor, "k");
+    }
+
+    Kelvin.prototype = {
+        name: "Kelvin",
+
+        toKelvin: function(value){
+            return value;
+        },
+
+        toCelsius: function(value){
+            return (value - 273.15);
+        },
+
+        toFahrenheit: function(value){
+            return ((value * 9/5)-459.67);
+        }
+    },
+
     exports.Temperatura = Temperature;
     exports.Celsius = Celsius;
     exports.Fahrenheit = Fahrenheit;
+    exports.Kelvin = Kelvin;
 
 })(this);
