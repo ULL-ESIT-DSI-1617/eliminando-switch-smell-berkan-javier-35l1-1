@@ -17,11 +17,11 @@
         },
 
         toKelvin: function(value) {
-            return (value + 273.15);
+            return (Number(value) + 273.15);
         },
 
         toCelsius: function(value) {
-            return value;
+            return Number(value);
         }
     
     };
@@ -39,7 +39,7 @@
         },
 
         toFahrenheit: function(value) {
-            return value;
+            return Number(value);
         },
 
         toKelvin: function(value) {
@@ -56,7 +56,7 @@
         name: "Kelvin",
 
         toKelvin: function(value){
-            return value;
+            return Number(value);
         },
 
         toCelsius: function(value){
