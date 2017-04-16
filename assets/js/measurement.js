@@ -56,7 +56,7 @@
                 return source[target]().toFixed(2) + " " + target;
             }
             catch(err){
-                return "No hay forma de convertir desde" + tipo + hasta + destino;
+                return "No hay forma de convertir desde" + tipo + "hasta" + destino;
             }
         }
 
