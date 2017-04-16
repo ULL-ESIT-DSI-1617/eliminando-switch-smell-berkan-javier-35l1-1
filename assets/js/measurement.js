@@ -1,78 +1,69 @@
-let Measurement = (function() {
+(function(exports) {
+    "use strict";
 
-    let _value = Symbol();
-    let _magnitude = Symbol();
-
-    class Measurement {
-        constructor(value, magnitude) {
-            this[_value] = value;
-            this[_magnitude] = magnitude;
+    // Constructor
+    function Medida(value, type) {
+        if (!type) {
+            var param = XRegExp(""
+                                + "(?<value>       [-+]?\\d+ (?:[\\.,]\\d*) \\s* ) # Get number \n"
+                                + "((e(?<exponent> [-+]?\\d+)\\s*)?)               # Get Exponent\n"
+                                + "(?<measure>     [a-zA-Z]+)                      # Get kind");
+        var m = XRegExp.exec(value, param);
+        this.value = parseFloat(m.value) * Math.pow(10, parseInt(m.exponent));
+        this.type = m.measure;
         }
-        get value() {
-            return this[_value];
-        }
-        get magnitude() {
-            return this[_magnitude];
+        else {
+            this.value = value;
+            this.type = type;
         }
     }
-    return Measurement;
-}());
+    
+    Medida.match = function (input) {
+        var measures = '[a-z]+';
 
-function converter(original_measure) {
-    var temp = original_measure;
-    var regexp = /([-+]?\d+(?:\.\d*)?)\s*([fFcCkK])\s*(to)?\s*([fFcCkK])\s*$/;
+        var inputRegex = XRegExp(
+            '^(\\s*)                                                  # whitespaces \n'
+                    + '(?<value>       [-+]?\\d+ (?:[\\.,]\\d*)?\\s*)     # captures the number\n'
+                    + '((e(?<exponent> [-+]?\\d+)\\s*)?)                  # captures the exponent\n'
+                    + '(?<tipo>       ' + measures + ')                   # Capture kind of value\n'
+                    + '((?:\\s+to)?\\s+ (?<destino>' + measures + '))?    # Get "to" syntax \n'
+                    + '(\\s*)$                                            # whitespaces \n'
+                , 'xi');
+        return XRegExp.exec(input, inputRegex);
+    };
+    
+    Medida.medidas = {};
 
-    var m = temp.match(regexp);
+    Medida.convertir = function(valor){
+        var measures = Medida.medidas;
 
-    if (m) {
-        var num = m[1];
-        var fromType = m[2];
-        var toType = m[4];
-        num = parseFloat(num);
-        if (fromType == 'c' || fromType == 'C') {
-            var temp = new Celsius(num, fromType);
-            switch (toType) {
-                case "k":
-                case "K":
-                     return temp.toKelvin();
-                    break;
-                case "f":
-                case "F":
-                    return temp.toFarenheit();
-                    break;
-                default:
-                    break;
+        measures.c = Celsius;
+        //measures.f = Farenheit;
+
+        var match = Medida.match(valor);
+
+        if(match) {
+            var numero = match.value;
+            var tipo = match.tipo;
+            var destino = match.destino;
+        
+            try {
+                var source = new measures[tipo[0]](numero);
+                var target = "to"+measures[destino[0]].name;
+                if(!source.check(tipo) || !target.check(destino)) {
+                    throw "error";
+                }
+                return source[target]().toFixed(2) + " " + target;
             }
-        } else if (fromType == 'f' || fromType == 'F') {
-            var temp = new Farenheit(num, fromType);
-            switch (toType) {
-                case "k":
-                case "K":
-                    return temp.toKelvin();
-                    break;
-                case "c":
-                case "C":
-                    return temp.toCelsius();
-                    break;
-                default:
-                    break;
-            }
-        } else {
-            var temp = new Kelvin(num, fromType);
-            switch (toType) {
-                case "f":
-                case "F":
-                    return temp.toFarenheit();
-                    break;
-                case "c":
-                case "C":
-                    return temp.toCelsius();
-                    break;
-                default:
-                    break;
+            catch(err){
+                return "No hay forma de convertir desde" + tipo + hasta + destino;
             }
         }
-    } else {
-        return "ERROR! Try something like '-4.2C to f' or '-4.2C f' instead";
-    }
-}
+
+        else
+            return "Introduzca la temperatura de la siguiente forma: 330e-1 F to C";
+    };
+
+    exports.Medida = Medida;
+
+})(this);
