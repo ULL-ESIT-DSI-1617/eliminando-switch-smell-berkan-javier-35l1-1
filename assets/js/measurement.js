@@ -38,7 +38,7 @@
         var measures = Medida.medidas;
 
         measures.c = Celsius;
-        //measures.f = Farenheit;
+        measures.f = Farenheit;
 
         var match = Medida.match(valor);
 
@@ -49,14 +49,14 @@
         
             try {
                 var source = new measures[tipo[0]](numero);
-                var target = "to"+measures[destino[0]].name;
+                var target = "to" + measures[destino[0]].name;
                 if(!source.check(tipo) || !target.check(destino)) {
                     throw "error";
                 }
                 return source[target]().toFixed(2) + " " + target;
             }
             catch(err){
-                return "No hay forma de convertir desde" + tipo + "hasta" + destino;
+                return "No hay forma de convertir desde " + tipo + " hasta " + destino;
             }
         }
 
