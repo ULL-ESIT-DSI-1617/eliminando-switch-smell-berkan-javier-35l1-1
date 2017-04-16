@@ -16,6 +16,10 @@
             return ((value * 9/5) + 32);
         },
 
+        toKelvin: function(value) {
+            return (value + 273.15);
+        },
+
         toCelsius: function(value) {
             return value;
         }
@@ -36,6 +40,10 @@
 
         toFahrenheit: function(value) {
             return value;
+        },
+
+        toKelvin: function(value) {
+            return ((value + 459.67) * 5/9);
         }
     };
 
