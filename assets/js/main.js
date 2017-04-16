@@ -1,6 +1,10 @@
-function main() {
-    var from_measure = document.getElementById('original').value
-    var to_measure = document.getElementById('converted');
-    to_measure.innerHTML = converter(from_measure);
-    return false;
-}
+(function(exports) {
+  "use strict";
+  function main() {
+      var valor     = document.getElementById('original').value,
+          elemento  = document.getElementById('converted');
+      elemento.innerHTML = Medida.convertir(valor);
+      return false;
+  }
+  exports.main = main;
+})(this);
